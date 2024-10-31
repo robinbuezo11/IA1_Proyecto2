@@ -24,15 +24,15 @@
                 <h2 class="text-center">Configuración del Modelo de Machine Learning</h2>
                 <!-- Selección de archivo CSV o DataSet -->
                 <div class="mb-5">
-                    <label for="archivo" class="form-label">Selecciona un archivo CSV o DataSet</label>
-                    <input type="file" class="form-control" id="archivo" name="archivo" accept=".csv, .json" required>
+                    <label for="dataFile" class="form-label">Selecciona un archivo CSV o DataSet</label>
+                    <input type="file" class="form-control" id="dataFile" name="dataFile" accept=".csv, .json" required>
                 </div>
 
                 <!-- Parámetros de Entrenamiento -->
-                <div class="row">
+                <div class="row mb-5">
                     <div class="col-md-4">
-                        <label for="modelo" class="form-label">Selecciona un modelo de Machine Learning</label>
-                        <select class="form-select" id="modelo" name="modelo" required>
+                        <label for="model" class="form-label">Selecciona un modelo de Machine Learning</label>
+                        <select class="form-select" id="model" name="model" required>
                             <option value="linear">Linear Regression</option>
                             <option value="polynomial">Polynomial Regression</option>
                             <option value="tree">Decision Tree</option>
@@ -52,50 +52,56 @@
                     </div>
                 </div>
 
-                <!-- Objetivo del Entrenamiento -->
-                <div class="mb-5 mt-3">
-                    <label for="objetivo" class="form-label">Objetivo del Entrenamiento</label>
-                    <select class="form-select" id="objetivo" name="objetivo" required>
-                        <option value="tendencias">Tendencias</option>
-                        <option value="patrones">Patrones</option>
-                        <option value="clasificacion">Clasificación</option>
-                        <option value="prediccion">Predicción</option>
-                    </select>
-                </div>
-
                 <!-- Parámetros Específicos -->
-                <div id="parametrosEspecificos" class="mb-5">
+                <div id="modelParams" class="mb-5">
                     <h4>Parámetros Específicos del Modelo</h4>
-                    <div class="row">
-                        <!-- Parámetros de clasificación -->
-                        <div id="paramClasificacion" class="col-md-4">
-                            <label for="clases" class="form-label">Cantidad de Clases</label>
-                            <input type="number" class="form-control" id="clases" name="clases" min="2" value="2">
-                        </div>
 
-                        <!-- Parámetros de predicción -->
-                        <div id="paramPrediccion" class="col-md-4">
-                            <label for="rangoX" class="form-label">Rango de Predicción (eje X)</label>
-                            <input type="text" class="form-control" id="rangoX" name="rangoX">
+                    <!-- Parámetros de Regresión Lineal -->
+                    <div class="row" id="linearParams">
+                        <div class="col-md-4">
+                            <label for="linearXColumn" class="form-label">Columna X</label>
+                            <input type="text" class="form-control" id="linearXColumn" name="linearXColumn" required>
                         </div>
+                        <div class="col-md-4">
+                            <label for="linearYColumn" class="form-label">Columna Y</label>
+                            <input type="text" class="form-control" id="linearYColumn" name="linearYColumn" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="linearPredictValue" class="form-label">Valor(es) a Predecir</label>
+                            <input type="text" class="form-control" id="linearPredictValue" name="linearPredictValue">
+                        </div>
+                    </div>
 
-                        <!-- Selección de Variables de Entrada y Salida paara Supervisado -->
-                        <div id="paramSupervisado" class="col-md-4">
-                            <label for="variableEntrada" class="form-label">Variable de Entrada</label>
-                            <input type="text" class="form-control" id="variableEntrada" name="variableEntrada">
+                    <!-- Parámetros de Regresión Polinomial -->
+                    <div class="row" id="polynomialParams">
+                        <div class="col-md-3">
+                            <label for="polynomialXColumn" class="form-label">Columna X</label>
+                            <input type="text" class="form-control" id="polynomialXColumn" name="polynomialXColumn" required>
                         </div>
-                        <div id="paramSupervisado" class="col-md-4">
-                            <label for="variableSalida" class="form-label">Variable de Salida</label>
-                            <input type="text" class="form-control" id="variableSalida" name="variableSalida">
+                        <div class="col-md-3">
+                            <label for="polynomialYColumn" class="form-label">Columna Y</label>
+                            <input type="text" class="form-control" id="polynomialYColumn" name="polynomialYColumn" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="polynomialDegree" class="form-label">Grado del Polinomio</label>
+                            <input type="number" class="form-control" id="polynomialDegree" name="polynomialDegree" min="1" value="2" required>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="polynomialPredictValue" class="form-label">Valor(es) a Predecir</label>
+                            <input type="text" class="form-control" id="polynomialPredictValue" name="polynomialPredictValue">
                         </div>
                     </div>
                 </div>
 
                 <!-- Botón de Operación -->
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-4 mb-4">
-                    <button type="button" class="btn btn-primary" id="btnEntrenar">Entrenar Modelo</button>
-                    <button type="button" class="btn btn-success" id="btnPredecir">Predecir</button>
-                    <button type="button" class="btn btn-secondary" id="btnGraficar">Mostrar Gráfica</button>
+                    <button type="button" class="btn btn-primary" id="btnTrain">Entrenar Modelo</button>
+                    <button type="button" class="btn btn-success" id="btnPredict">Predecir</button>
+                    <button type="button" class="btn btn-secondary" id="btnGraph">Mostrar Gráfica</button>
+                </div>
+
+                <!-- Resultados -->
+                <div id="results" class="mb-5"></div>
             </form>
         </div>
         <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->

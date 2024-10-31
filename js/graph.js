@@ -11,6 +11,9 @@ if (graphData && graphData.graphs) {
             case 'linear':
                 document.getElementById('titleText').innerHTML = 'Gráficas de Regresión Lineal';
                 break;
+            case 'polynomial':
+                document.getElementById('titleText').innerHTML = 'Gráficas de Regresión Polinomial';
+                break;
             default:
                 document.getElementById('titleText').innerHTML = 'Gráficas del Modelo';
         }
