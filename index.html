@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>IA1 - Proyecto2</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/index.css">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -18,43 +19,41 @@
                 </a>
             </div>
         </nav>
-        <div class="container mt-5">
+        <div class="container mt-3">
             <form id="mlForm">
                 <h2 class="text-center">Configuración del Modelo de Machine Learning</h2>
                 <!-- Selección de archivo CSV o DataSet -->
-                <div class="mb-3">
+                <div class="mb-5">
                     <label for="archivo" class="form-label">Selecciona un archivo CSV o DataSet</label>
                     <input type="file" class="form-control" id="archivo" name="archivo" accept=".csv, .json" required>
                 </div>
 
-                <!-- Selección de Modelo de Machine Learning -->
-                <div class="mb-3">
-                    <label for="modelo" class="form-label">Selecciona un modelo de Machine Learning</label>
-                    <select class="form-select" id="modelo" name="modelo" required>
-                        <option value="linear">Linear Regression</option>
-                        <option value="polynomial">Polynomial Regression</option>
-                        <option value="tree">Decision Tree</option>
-                        <option value="bayes">Naive Bayes</option>
-                        <option value="neuronal">Neuronal Network</option>
-                        <option value="kmeans">K-Means</option>
-                        <option value="knn">K-Nearest Neighbors</option>
-                    </select>
-                </div>
-
                 <!-- Parámetros de Entrenamiento -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <label for="modelo" class="form-label">Selecciona un modelo de Machine Learning</label>
+                        <select class="form-select" id="modelo" name="modelo" required>
+                            <option value="linear">Linear Regression</option>
+                            <option value="polynomial">Polynomial Regression</option>
+                            <option value="tree">Decision Tree</option>
+                            <option value="bayes">Naive Bayes</option>
+                            <option value="neuronal">Neuronal Network</option>
+                            <option value="kmeans">K-Means</option>
+                            <option value="knn">K-Nearest Neighbors</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
                         <label for="trainPercent" class="form-label">Porcentaje de Train Data</label>
                         <input type="number" class="form-control" id="trainPercent" name="trainPercent" min="0" max="100" value="80" required>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label for="testPercent" class="form-label">Porcentaje de Test Data</label>
                         <input type="number" class="form-control" id="testPercent" name="testPercent" min="0" max="100" value="20" required>
                     </div>
                 </div>
 
                 <!-- Objetivo del Entrenamiento -->
-                <div class="mb-3 mt-3">
+                <div class="mb-5 mt-3">
                     <label for="objetivo" class="form-label">Objetivo del Entrenamiento</label>
                     <select class="form-select" id="objetivo" name="objetivo" required>
                         <option value="tendencias">Tendencias</option>
@@ -65,27 +64,30 @@
                 </div>
 
                 <!-- Parámetros Específicos -->
-                <div id="parametrosEspecificos" class="mb-3">
+                <div id="parametrosEspecificos" class="mb-5">
                     <h4>Parámetros Específicos del Modelo</h4>
+                    <div class="row">
+                        <!-- Parámetros de clasificación -->
+                        <div id="paramClasificacion" class="col-md-4">
+                            <label for="clases" class="form-label">Cantidad de Clases</label>
+                            <input type="number" class="form-control" id="clases" name="clases" min="2" value="2">
+                        </div>
 
-                    <!-- Parámetros de clasificación -->
-                    <div id="paramClasificacion" class="mb-3">
-                        <label for="clases" class="form-label">Cantidad de Clases</label>
-                        <input type="number" class="form-control" id="clases" name="clases" min="2" value="2">
-                    </div>
+                        <!-- Parámetros de predicción -->
+                        <div id="paramPrediccion" class="col-md-4">
+                            <label for="rangoX" class="form-label">Rango de Predicción (eje X)</label>
+                            <input type="text" class="form-control" id="rangoX" name="rangoX">
+                        </div>
 
-                    <!-- Parámetros de predicción -->
-                    <div id="paramPrediccion" class="mb-3">
-                        <label for="rangoX" class="form-label">Rango de Predicción (eje X)</label>
-                        <input type="text" class="form-control" id="rangoX" name="rangoX">
-                    </div>
-
-                    <!-- Selección de Variables de Entrada y Salida paara Supervisado -->
-                    <div id="paramSupervisado" class="mb-3">
-                        <label for="variableEntrada" class="form-label">Variable de Entrada</label>
-                        <input type="text" class="form-control" id="variableEntrada" name="variableEntrada">
-                        <label for="variableSalida" class="form-label">Variable de Salida</label>
-                        <input type="text" class="form-control" id="variableSalida" name="variableSalida">
+                        <!-- Selección de Variables de Entrada y Salida paara Supervisado -->
+                        <div id="paramSupervisado" class="col-md-4">
+                            <label for="variableEntrada" class="form-label">Variable de Entrada</label>
+                            <input type="text" class="form-control" id="variableEntrada" name="variableEntrada">
+                        </div>
+                        <div id="paramSupervisado" class="col-md-4">
+                            <label for="variableSalida" class="form-label">Variable de Salida</label>
+                            <input type="text" class="form-control" id="variableSalida" name="variableSalida">
+                        </div>
                     </div>
                 </div>
 
@@ -99,6 +101,8 @@
         <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="js/papaparse.min.js"></script>
+        <script src="js/tytus.js"></script>
         <script src="js/index.js"></script>
     </body>
 </html>
