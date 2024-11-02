@@ -19,13 +19,22 @@ function updateParams() {
     document.getElementById('treeParams').style.display = model === 'tree' ? 'flex' : 'none';
     
     document.getElementById('bayesParams').style.display = 'none';
-    document.getElementById('btnGraph').style.display = 'inline-block';
     document.getElementById('trainPercent').disabled = false;
     document.getElementById('testPercent').disabled = false;
-    if (model === 'bayes') {
+    if (model === 'bayes' || model === 'neuronal' || model === 'kmeans' || model === 'knn') {
         document.getElementById('trainPercent').disabled = true;
         document.getElementById('testPercent').disabled = true;
     }
+    document.getElementById('neuronalParams').style.display = model === 'neuronal' ? 'flex' : 'none';
+
+    document.getElementById('btnPredict').disabled = false;
+    document.getElementById('btnGraph').disabled = false;
+    if (model === 'kmeans') {
+        document.getElementById('btnPredict').disabled = true;
+        document.getElementById('btnGraph').disabled = true;
+    }
+    document.getElementById('kmeansParams').style.display = model === 'kmeans' ? 'flex' : 'none';
+    document.getElementById('knnParams').style.display = model === 'knn' ? 'flex' : 'none';
 };
 
 document.getElementById('btnTrain').addEventListener('click', async function () {
@@ -41,6 +50,12 @@ document.getElementById('btnTrain').addEventListener('click', async function () 
         if (currentModel) {
             document.getElementById('bayesParams').style.display = 'flex';
         }
+    } else if (model === 'neuronal') {
+        currentModel = await execNeuronalNetwork();
+    } else if (model === 'kmeans') {
+        execKMeans();
+    } else if (model === 'knn') {
+        currentModel = await execKnn();
     }
 });
 
@@ -66,6 +81,12 @@ document.getElementById('btnPredict').addEventListener('click', function () {
             break;
         case 'bayes':
             predictBayes();
+            break;
+        case 'neuronal':
+            predictNeuronalNetwork();
+            break;
+        case 'knn':
+            predictKnn();
             break;
     }
 });

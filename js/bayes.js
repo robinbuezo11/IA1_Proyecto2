@@ -75,8 +75,6 @@ function predictBayes() {
     const inputs = document.getElementById('bayesWhen').querySelectorAll('select');
     inputs.forEach(input => causes.push([input.name.replace('bayes', ''), input.value]));
 
-    console.log(value, causes);
-
     const prediction = currentModel.predict(value, causes);
     document.getElementById('results').innerHTML = `Predicción: ${prediction}`;
 }
