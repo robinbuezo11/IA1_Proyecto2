@@ -239,6 +239,8 @@ Este archivo es responsable de renderizar gráficos y tablas basados en los dato
 
 Este archivo permite a los usuarios visualizar de manera efectiva los resultados de los modelos de machine learning en forma de gráficos y tablas, facilitando la interpretación de los resultados obtenidos.
 
+---
+
 ### **Recursos**  
 ### PapaParse
 
@@ -269,7 +271,7 @@ ___
 ## **Manual de Usuario**
 
 ### **Pantallas Principales**
-#### ***Index***
+#### **Index**
 ![Index](./assets/index.png "Index")  
 Esta es la pantalla principal de la aplicación, desde acá se pueden realizar las siguientes acciones:
 
@@ -289,6 +291,8 @@ Esta es la pantalla principal de la aplicación, desde acá se pueden realizar l
     Por último, el usuario contará con una sección de resultados que se mostrará a la hora de realizar alguna predicción del respectivo modelo.
     ![Resultados](./assets/results.png "Resultados") 
 
-#### ***Gráficas del Modelo***
+---
+
+#### **Gráficas del Modelo**
 ![Gráficas](./assets/graphs.png "Gráficas")  
 Esta es la pantalla donde el usuario podrá visualizar las gráficas que se generen en el entranamiento del modelo. Estas serán diferentes dependiendo del modelo que se esté entrenando.
